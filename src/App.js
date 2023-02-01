@@ -1,25 +1,42 @@
-
 import React from "react";
 import ReactDOM from "react-dom/client";
+import { createBrowserRouter,RouterProvider } from "react-router-dom";
 // Default import
-import Header from './components/Header';
-
+import Header from "./components/Header";
 // Named import
-import {Title} from "./components/Header"
-import Body from './components/Body';
-const App=()=>{
-    return (
-        <>
-        
-        <Header/>
-        <Body />
-        </>
+import { Title } from "./components/Header";
+import Body from "./components/Body";
+import About from "./components/About"
+import Contact from './components/Contact';
+import Error from './components/Error';
 
-    )
-}
+const App = () => {
+  return (
+    <>
+      <Header />
+      <Body />
+    </>
+  );
+};
 
-export default App;
+const appRouter = createBrowserRouter([
+  {
+    path: "/",
+    element: <App />,
+    errorElement: <Error />
+  },
+  {
+    path: "/about",
+    element: <About />,
+  },
+  {
+    path: "/contact",
+    element: <Contact />,
+  },
+
+
+]);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
-root.render(<App />);
+root.render(<RouterProvider router={appRouter} />);
