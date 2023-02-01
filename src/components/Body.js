@@ -6,7 +6,7 @@ import Shimmer from './Shimmer';
 function filterData(searchInput, allRestaurants) {
  
   const filterData = allRestaurants.filter((restaurant) => 
-    restaurant?.data?.name.includes(searchInput)
+    restaurant?.data?.name?.toLowerCase()?.includes(searchInput.toLowerCase())
   );
   return filterData;
 }
