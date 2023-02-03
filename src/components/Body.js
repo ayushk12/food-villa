@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from 'react-router-dom';
 import { restaurantList } from "../constants";
 import RestauranctCard from "../components/RestaurantCard";
 import Shimmer from './Shimmer';
@@ -27,7 +28,7 @@ const Body = () => {
    
     console.log(json,'json')
  }
- 
+ console.log('id31',filteredRestaurants.data)
  if(!allRestaurants) return null;
   return (allRestaurants?.length===0)? <Shimmer /> :(
     <>
@@ -54,8 +55,14 @@ const Body = () => {
       </div>
       <div className="restaurant-list">
         {filteredRestaurants?.map((restaurant) => {
+          { console.log('id31',restaurant.data.id)}
           return (
-            <RestauranctCard {...restaurant.data} key={restaurant?.data?.id} />
+            <Link 
+            to={"/restaurant/" + restaurant.data.id} 
+            key={restaurant?.data?.id}
+            >
+            <RestauranctCard {...restaurant?.data}  />
+            </Link>
           );
         })}
       </div>
